@@ -1,0 +1,10 @@
+category "Car" {
+	tasks "check" {
+		"oil level",
+		"atf level",
+		"windshield washer fluid level",
+	},
+	tasks "bring" {
+		"bag for garbage"
+	}
+}
