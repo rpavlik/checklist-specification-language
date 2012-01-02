@@ -27,5 +27,26 @@ dsl.category = function(name)
 			end
 		end
 	end
+end
 
-			
+checklists = {}
+
+checklists.load = function(fn)
+	local component = assert(loadfile(fn))
+	setfenv(component, dsl)
+	component()
+end
+
+checklists.to_markdown = function()
+	for cat, contents in pairs(categories) do
+		print("## " .. cat .. "\n")
+		for tasklistname, t in pairs(contents) do
+			print("# " .. tasklistname .. "\n")
+			for _, task in ipairs(t) do
+				print("- " .. task .. "\n")
+			end
+		end
+	end
+end
+
+return checklists
