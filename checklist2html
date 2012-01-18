@@ -1,0 +1,21 @@
+#!/usr/bin/env lua
+--[[ Checklist Specification Language ]]
+--[[
+            Copyright Ryan Pavlik 2011-2012.
+Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at
+          http://www.boost.org/LICENSE_1_0.txt)
+]]
+
+require "checklists"
+
+if not checklists.to_html then
+	print "Error: markdown module for Lua not installed, so can't convert Markdown to HTML. 'luarocks install markdown' might help."
+	os.exit(1)
+end
+
+for _, v in ipairs(arg) do
+	checklists.load(v)
+end
+print(checklists.to_html())
+

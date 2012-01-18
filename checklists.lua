@@ -6,7 +6,8 @@ Distributed under the Boost Software License, Version 1.0.
           http://www.boost.org/LICENSE_1_0.txt)
 ]]
 
-
+local markdown
+pcall(function() markdown = require "markdown" end)
 
 local categories = {}
 local dsl = {}
@@ -63,8 +64,10 @@ checklists.to_markdown = function()
 	end
 	return table.concat(ret, "\n")
 end
-			end
-		end
+
+if markdown then
+	checklists.to_html = function()
+		return markdown(checklists.to_markdown())
 	end
 end
 
