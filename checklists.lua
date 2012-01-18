@@ -48,12 +48,21 @@ checklists.load = function(fn)
 end
 
 checklists.to_markdown = function()
+	local ret = {}
 	for cat, contents in pairs(categories) do
-		print("## " .. cat .. "\n")
+		table.insert(ret, "# " .. cat)
+		table.insert(ret, "\n")
 		for tasklistname, t in pairs(contents) do
-			print("# " .. tasklistname .. "\n")
+			table.insert(ret, "## " .. tasklistname)
+			table.insert(ret, "\n")
 			for _, task in ipairs(t) do
-				print("- " .. task .. "\n")
+				table.insert(ret, "- " .. task)
+				table.insert(ret, "\n")
+			end
+		end
+	end
+	return table.concat(ret, "\n")
+end
 			end
 		end
 	end

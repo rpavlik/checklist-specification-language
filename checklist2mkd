@@ -12,5 +12,5 @@ require "checklists"
 for _, v in ipairs(arg) do
 	checklists.load(v)
 end
-checklists.to_markdown()
+print(checklists.to_markdown())
 
